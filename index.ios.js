@@ -31,8 +31,11 @@ class SCPlayer extends Component {
     super(props)
 		this.state = {
       track_models: [],
-      selectedTab: 'searchTab'
+      selectedTab: 'searchTab',
+      selectedTrack: "",
 	 	}
+    this.setTrack = this.setTrack.bind(this)
+    this.renderTrack = this.renderTrack.bind(this)
   }
   render() {
     listDS.cloneWithRows(this.state.track_models)
@@ -67,28 +70,43 @@ return (
            />
         </View>
         </Icon.TabBarItem>
+        <Icon.TabBarItem
+          title="Player"
+          iconName="play"
+          selectedIconName="play"
+          selected={this.state.selectedTab === 'playTab'}
+          onPress={() => {
+          this.setState({
+           selectedTab: 'playTab',
+          });
+        }}>
+        <Player track={this.state.selectedTrack.track}/>
+        </Icon.TabBarItem>
       </TabBarIOS>
     );
   }
-
+  setTrack(track) {
+    this.setState({
+          selectedTrack: {track}
+        });
+  }
   renderTrack(track){
-    console.log(track)
-    console.log(track.artwork_url)
     var imageURL = track.artwork_url
     if(imageURL == null) {
       imageURL = "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"
     }
     return (
-      <View style={styles.trackView}>
-        <Image source={{uri: imageURL}} style={styles.thumbnail}/>
-        <View style={styles.infoContainer}>
-          <Text numberOfLines={1} style={styles.titleText}>{track.title}</Text>
-          <Text numberOfLines={1} style={styles.userText}>{track.user.username}</Text>
+      <TouchableOpacity onPress={() => this.setTrack(track)}>
+        <View style={styles.trackView}>
+          <Image source={{uri: imageURL}} style={styles.thumbnail}/>
+          <View style={styles.infoContainer}>
+            <Text numberOfLines={1} style={styles.titleText}>{track.title}</Text>
+            <Text numberOfLines={1} style={styles.userText}>{track.user.username}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
-
   fetchData(query) {
     https://api.soundcloud.com/tracks.json?q=\(formattedQuery)&client_id=\(clientId)&limit=50
     let formattedQuery = query.replace(/\s+/g, '+');
