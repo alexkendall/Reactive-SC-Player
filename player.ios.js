@@ -29,6 +29,7 @@ class Player extends Component {
       var artwork_url = "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"
         if(this.props.track.artwork_url != null) {
           artwork_url = this.props.track.artwork_url
+          artwork_url = artwork_url.replace("large", "t500x500")
         }
         return (
           <View style={styles.container}>
@@ -40,9 +41,6 @@ class Player extends Component {
       } else {
         return (
           <View>
-            <Text>
-              No Track Selected yet
-            </Text>
           </View>
         )
       }
@@ -60,10 +58,13 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
+    marginRight: 10,
+    marginLeft: 10,
     marginTop: 20,
-    fontSize: 20,
+    fontSize: 17,
     color: 'black',
-    fontWeight: '600'
+    fontWeight: '600',
+    textAlign: 'center',
   },
   username: {
     fontSize: 14,
