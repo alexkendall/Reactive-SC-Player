@@ -16,9 +16,11 @@ import React, {
   Image,
   Dimensions,
   TouchableOpacity,
+  TabBarIOS,
 } from 'react-native';
 var Player = require("./player.ios")
 var {height, width} = Dimensions.get('window');
+var Icon = require('react-native-vector-icons/FontAwesome');
 
 // list view variables
 var listDS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -29,27 +31,43 @@ class SCPlayer extends Component {
     super(props)
 		this.state = {
       track_models: [],
+      selectedTab: 'searchTab'
 	 	}
   }
   render() {
     listDS.cloneWithRows(this.state.track_models)
-    return (
-      <View style={styles.container}>
-        <Player/>
-        <View style={styles.header}>
-          <Image style={styles.logo} source={{uri: "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"}}/>
-          <Text style={styles.headerText}>SOUNDCLOUD QUERY</Text>
+return (
+    <TabBarIOS tintColor="white"
+        barTintColor="black"
+    >
+        <Icon.TabBarItem
+          title="Search"
+          iconName="search"
+          selectedIconName="search"
+          selected={this.state.selectedTab === 'searchTab'}
+          onPress={() => {
+          this.setState({
+           selectedTab: 'searchTab',
+          });
+        }}>
+        <View style={styles.container}>
+          <Player/>
+          <View style={styles.header}>
+            <Image style={styles.logo} source={{uri: "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"}}/>
+            <Text style={styles.headerText}>SOUNDCLOUD QUERY</Text>
+          </View>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => this.fetchData(text)}
+            placeholder="SEARCH TRACKS"
+          />
+          <ListView style={styles.listView}
+              dataSource={listDS.cloneWithRows(this.state.track_models)}
+              renderRow={this.renderTrack}
+           />
         </View>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.fetchData(text)}
-          placeholder="SEARCH TRACKS"
-        />
-        <ListView style={styles.listView}
-            dataSource={listDS.cloneWithRows(this.state.track_models)}
-            renderRow={this.renderTrack}
-         />
-      </View>
+        </Icon.TabBarItem>
+      </TabBarIOS>
     );
   }
 
@@ -91,11 +109,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   listView: {
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
+    backgroundColor: 'white',
   },
   trackView: {
     backgroundColor: 'white',
@@ -103,15 +123,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     width: width - 40,
-    marginBottom: 20,
+    marginTop: 20,
   },
   input: {
     height: 40,
     borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 6,
     marginTop: 20,
     marginRight: 20,
     marginLeft: 20,
+    backgroundColor: 'white',
   },
   thumbnail: {
     height: 75,
