@@ -64,7 +64,7 @@ return (
             onChangeText={(text) => this.fetchData(text)}
             placeholder="SEARCH TRACKS"
           />
-          <ListView style={styles.listView}
+          <ListView enableEmptySections={true} style={styles.listView}
               dataSource={listDS.cloneWithRows(this.state.track_models)}
               renderRow={this.renderTrack}
            />
