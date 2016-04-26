@@ -15,6 +15,7 @@ import React, {
   TextInput,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 var Player = require("./player.ios")
 var {height, width} = Dimensions.get('window');
@@ -36,6 +37,7 @@ class SCPlayer extends Component {
       <View style={styles.container}>
         <Player/>
         <View style={styles.header}>
+          <Image style={styles.logo} source={{uri: "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"}}/>
           <Text style={styles.headerText}>SOUNDCLOUD QUERY</Text>
         </View>
         <TextInput
@@ -62,8 +64,8 @@ class SCPlayer extends Component {
       <View style={styles.trackView}>
         <Image source={{uri: imageURL}} style={styles.thumbnail}/>
         <View style={styles.infoContainer}>
-          <Text style={styles.titleText}>{track.title}</Text>
-          <Text style={styles.userText}>{track.user.username}</Text>
+          <Text numberOfLines={1} style={styles.titleText}>{track.title}</Text>
+          <Text numberOfLines={1} style={styles.userText}>{track.user.username}</Text>
         </View>
       </View>
     );
@@ -126,9 +128,10 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 18,
     color: 'black',
+    width: width - 20 - 75 - 5 -20
   },
   header: {
-    height: 40,
+    height: 100,
     backgroundColor: 'black',
     width: width,
     alignItems: 'center',
@@ -136,8 +139,12 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 20,
   },
+  logo: {
+    height: 60,
+    width: 60,
+  }
 });
 
 AppRegistry.registerComponent('SCPlayer', () => SCPlayer);
