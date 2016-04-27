@@ -17,19 +17,30 @@ class Player extends Component {
     this.state = {
       playing: false,
       trackLoaded: false,
+      currentTrack: ""
     }
     this.togglePlay = this.togglePlay.bind(this)
+  }
+  loadStream () {
+    if (this.props.track) {
+      let streamURL = this.props.track.stream_url + "?client_id=b9c5fb9e9a2a62aa8de88e2bff32580f"
+      audioPlayer.initWithURL(streamURL) // temporary url to show we can play songs with audio pkayer module
+      audioPlayer.play()
+      this.state = {
+        playing: true,
+        trackLoaded: true,
+        currentTrack: this.props.track,
+      }
+    }
   }
   togglePlay () {
       if(this.state.trackLoaded == false) {
         if(this.props.track) {
-          let streamURL = this.props.track.stream_url + "?client_id=b9c5fb9e9a2a62aa8de88e2bff32580f"
-          console.log(streamURL)
-          audioPlayer.initWithURL(streamURL) // temporary url to show we can play songs with audio pkayer module
-          audioPlayer.play()
+          this.loadStream()
           this.setState ({
             playing: true,
             trackLoaded: true,
+            currentTrack: this.props.track,
           });
         }
       } else if (this.state.playing) {
@@ -47,6 +58,9 @@ class Player extends Component {
   render()
   {
     if (this.props.track) {
+      if (this.props.track !=  this.state.currentTrack) {
+        this.loadStream()
+      }
         var artwork_url = "http://3.bp.blogspot.com/-PzpJFD56NmM/U4OEGvGR5pI/AAAAAAAAIO8/s9UBNaw800A/s1600/soundcloud.png"
         if(this.props.track.artwork_url != null) {
           artwork_url = this.props.track.artwork_url
