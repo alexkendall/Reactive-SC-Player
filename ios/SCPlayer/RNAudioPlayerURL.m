@@ -39,6 +39,13 @@ RCT_EXPORT_METHOD(pause){
   [self.audioPlayer pause];
 }
 
+RCT_EXPORT_METHOD(getCurrentTime:(RCTResponseSenderBlock)callback){
+  while(self.audioItem.status != AVPlayerItemStatusReadyToPlay){
+  }  //this is kind of crude but it will prevent the app from crashing due to a "NAN" return(this allows the getCurrentTime method to be executed in the componentDidMount function of the React class without the app crashing
+  float currentTime = CMTimeGetSeconds(self.audioItem.currentTime);
+  callback(@[[[NSNumber alloc] initWithFloat:currentTime]]);
+}
+
 RCT_EXPORT_METHOD(seekToTime:(nonnull NSNumber *)toTime){
 	[self.audioPlayer seekToTime: CMTimeMakeWithSeconds([toTime floatValue], NSEC_PER_SEC)];
 }
