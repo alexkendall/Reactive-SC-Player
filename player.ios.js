@@ -96,7 +96,16 @@ class Player extends Component {
             <Slider
               style={styles.slider}
               value={this.state.sliderVal}
-              onValueChange={(value) => this.setState({value})}
+              onValueChange={(value) =>
+                audioPlayer.getDuration((duration) => {
+                  this.setState({
+                    sliderVal: value,
+                  })
+                  audioPlayer.seekToTime(value * duration)
+                })
+              }
+              trackStyle={styles.track}
+              thumbStyle={styles.thumb}
             />
             <Text style={styles.title}>{this.props.track.title}</Text>
             <Text style={styles.username}>{this.props.track.user.username}</Text>
@@ -159,7 +168,22 @@ var styles = StyleSheet.create({
   username: {
     fontSize: 14,
     color: 'gray'
-  }
+  },
+  thumb: {
+    width: 10,
+    height: 25,
+    borderRadius: 0,
+    backgroundColor: '#eaeaea',
+    borderColor: '#9a9a9a',
+    borderWidth: 1,
+  },
+  track: {
+    height: 10,
+    borderRadius: 2,
+    backgroundColor: 'white',
+    borderColor: '#9a9a9a',
+    borderWidth: 1,
+  },
 });
 
 module.exports = Player
