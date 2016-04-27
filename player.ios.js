@@ -96,7 +96,7 @@ class Player extends Component {
             <Slider
               style={styles.slider}
               value={this.state.sliderVal}
-              onValueChange={(value) =>
+              onSlidingComplete={(value) =>
                 audioPlayer.getDuration((duration) => {
                   this.setState({
                     sliderVal: value,
