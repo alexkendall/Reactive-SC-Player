@@ -84,6 +84,20 @@ return (
         }}>
         <Player track={this.state.selectedTrack.track}/>
         </Icon.TabBarItem>
+        <Icon.TabBarItem
+          title="User"
+          iconName="user"
+          selectedIconName="user"
+          selected={this.state.selectedTab === 'userTab'}
+          onPress={() => {
+            if (this.state.selectedTab != 'userTab') {
+              this.setState({
+                selectedTab: 'userTab',
+              });
+            }
+        }}>
+        <View/>
+        </Icon.TabBarItem>
       </TabBarIOS>
     );
   }
