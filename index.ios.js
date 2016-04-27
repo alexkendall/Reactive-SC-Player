@@ -21,6 +21,7 @@ import React, {
 var Player = require("./player.ios")
 var {height, width} = Dimensions.get('window');
 var Icon = require('react-native-vector-icons/FontAwesome');
+var Slider = require('react-native-slider');
 
 // list view variables
 var listDS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

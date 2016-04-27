@@ -10,6 +10,7 @@ import React, {
 let clientId = "b9c5fb9e9a2a62aa8de88e2bff32580f"
 var audioPlayer = require('react-native').NativeModules.RNAudioPlayerURL;
 var {height, width} = Dimensions.get('window');
+var Slider = require('react-native-slider');
 
 class Player extends Component {
   constructor(props) {
@@ -73,6 +74,11 @@ class Player extends Component {
         return (
           <View style={styles.container}>
             <Image style={styles.artwork} source={{uri: artwork_url}}/>
+            <Slider
+              style={styles.slider}
+              value={this.state.value}
+              onValueChange={(value) => this.setState({value})}
+            />
             <Text style={styles.title}>{this.props.track.title}</Text>
             <Text style={styles.username}>{this.props.track.user.username}</Text>
             <View style={styles.playbackContainer}>
@@ -94,6 +100,11 @@ class Player extends Component {
 }
 
 var styles = StyleSheet.create({
+  slider: {
+    width: width - 40,
+    marginLeft: 20,
+    marginRight: 20,
+  },
   playbackImage: {
     height: 75,
     width: 75,
@@ -101,7 +112,7 @@ var styles = StyleSheet.create({
     marginLeft: 20,
   },
   playbackContainer: {
-    height: height - width - 120,
+    height: height - width - 160,
     width: width,
     flexDirection: 'row',
     alignItems: 'center',
