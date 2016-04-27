@@ -97,11 +97,11 @@ var styles = StyleSheet.create({
   playbackImage: {
     height: 75,
     width: 75,
-    marginRight: 10,
-    marginLeft: 10,
+    marginRight: 20,
+    marginLeft: 20,
   },
   playbackContainer: {
-    height: height - width - 100,
+    height: height - width - 120,
     width: width,
     flexDirection: 'row',
     alignItems: 'center',

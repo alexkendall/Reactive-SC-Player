@@ -40,7 +40,6 @@
 		FAEB70D51CCFE30B00E95BCE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEB70CD1CCFE30B00E95BCE /* MaterialIcons.ttf */; };
 		FAEB70D61CCFE30B00E95BCE /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEB70CE1CCFE30B00E95BCE /* Octicons.ttf */; };
 		FAEB70D71CCFE30B00E95BCE /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAEB70CF1CCFE30B00E95BCE /* Zocial.ttf */; };
-		FAEB70DB1CD106E100E95BCE /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = FAEB70DA1CD106E100E95BCE /* play.png */; };
 		FC5584D61117435593C73EB2 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F13B8A6EEAD544EBBA8C55C2 /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
@@ -188,7 +187,6 @@
 		FAEB70CD1CCFE30B00E95BCE /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		FAEB70CE1CCFE30B00E95BCE /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		FAEB70CF1CCFE30B00E95BCE /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		FAEB70DA1CD106E100E95BCE /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,7 +369,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				FAEB70DA1CD106E100E95BCE /* play.png */,
 				FAEB70C71CCFE30B00E95BCE /* Fonts */,
 				13B07FAE1A68108700A75B9A /* SCPlayer */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -665,7 +662,6 @@
 				F3789336F2664159964BCC9F /* Entypo.ttf in Resources */,
 				FAEB70D51CCFE30B00E95BCE /* MaterialIcons.ttf in Resources */,
 				E3268830882643BCB08A4D67 /* EvilIcons.ttf in Resources */,
-				FAEB70DB1CD106E100E95BCE /* play.png in Resources */,
 				FC5584D61117435593C73EB2 /* FontAwesome.ttf in Resources */,
 				3DB49E925E704369A5055588 /* Foundation.ttf in Resources */,
 				2EF71CF9A0354EDDAF034258 /* Ionicons.ttf in Resources */,
