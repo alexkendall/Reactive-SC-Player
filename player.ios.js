@@ -7,12 +7,17 @@ import React, {
   Dimensions,
   Image
 } from 'react-native';
+import TimerMixin from 'react-timer-mixin';
+
 let clientId = "b9c5fb9e9a2a62aa8de88e2bff32580f"
 var audioPlayer = require('react-native').NativeModules.RNAudioPlayerURL;
 var {height, width} = Dimensions.get('window');
 var Slider = require('react-native-slider');
 
 class Player extends Component {
+  componentDidMount() {
+    setInterval(this.updateSlider, 1000)
+  }
   constructor(props) {
     super(props)
     this.state = {
@@ -21,6 +26,7 @@ class Player extends Component {
       currentTrack: ""
     }
     this.togglePlay = this.togglePlay.bind(this)
+    this.updateSlider = this.updateSlider.bind(this)
   }
   loadStream () {
     if (this.props.track) {
@@ -31,7 +37,20 @@ class Player extends Component {
         playing: true,
         trackLoaded: true,
         currentTrack: this.props.track,
+        sliderVal: 0.0,
       }
+    }
+  }
+  updateSlider() {
+    console.log("should update slider")
+    if(this.state.trackLoaded) {
+      audioPlayer.getCurrentTime((time) => {
+        audioPlayer.getDuration((duration) => {
+          this.setState({
+            sliderVal: time / duration,
+          })
+        })
+      });
     }
   }
   togglePlay () {
@@ -76,7 +95,7 @@ class Player extends Component {
             <Image style={styles.artwork} source={{uri: artwork_url}}/>
             <Slider
               style={styles.slider}
-              value={this.state.value}
+              value={this.state.sliderVal}
               onValueChange={(value) => this.setState({value})}
             />
             <Text style={styles.title}>{this.props.track.title}</Text>
