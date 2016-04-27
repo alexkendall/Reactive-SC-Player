@@ -76,9 +76,11 @@ return (
           selectedIconName="play"
           selected={this.state.selectedTab === 'playTab'}
           onPress={() => {
-          this.setState({
-           selectedTab: 'playTab',
-          });
+            if (this.state.selectedTab != 'playTab') {
+              this.setState({
+                selectedTab: 'playTab',
+              });
+            }
         }}>
         <Player track={this.state.selectedTrack.track}/>
         </Icon.TabBarItem>
